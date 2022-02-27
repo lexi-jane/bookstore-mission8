@@ -1,0 +1,46 @@
+﻿@page
+@model Bookstore.Pages.BuyModel
+@{
+}
+
+<div>
+    <a class="btn btn-primary" href="@Model.ReturnUrl">< Continue Shopping</a>
+</div>
+
+<br />
+<br />
+
+<h2>Your cart</h2>
+
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Book</th>
+            <th>Quantity</th>
+            <th>Cost</th>
+            <th>Subtotal</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var x in Model.cart.Items)
+        {
+            <tr>
+                <td>@x.Book.Title</td>
+                <td>@x.Quantity</td>
+                <td>$@x.Book.Price</td>
+                <td>$@(x.Quantity * x.Book.Price)</td>
+            </tr>
+        }
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="3">Total:</td>
+            <td colspan="3">$@Model.cart.CalculateTotal().ToString()</td>
+
+        </tr>
+    </tfoot>
+</table>
+
